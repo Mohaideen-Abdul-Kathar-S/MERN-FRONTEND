@@ -36,7 +36,7 @@ export default function Expence(Props) {
   
   const addExpen = (title,amount,id=null)=>{
     if(id){
-      axios.put(`http://localhost:3000/api/expenses/${id}`,
+      axios.put(`https://mern-backend-rd97.onrender.com/api/expenses/${id}`,
       {title,amount:Number(amount)}).then((res)=>{
       const updatedList=exp.map((ex)=>ex._id==id ? res.data:exp);
         setExp(updatedList);
@@ -45,7 +45,7 @@ export default function Expence(Props) {
     .catch((err)=>console.error("updaer erre",err))
       
     }else{ 
-      axios.post("http://localhost:3000/api/expenses",
+      axios.post("https://mern-backend-rd97.onrender.com/api/expenses",
         {title,amount:Number(amount)})
       .then((res)=>setExp([...exp,res.data]))
       .catch((err)=>console.error("Add Error",err));
@@ -55,7 +55,7 @@ export default function Expence(Props) {
     
   }
    const del=(id)=>{
-    axios.delete(`http://localhost:3000/api/expenses/${id}`)
+    axios.delete(`https://mern-backend-rd97.onrender.com/api/expenses/${id}`)
     .then(()=>setExp(exp.filter((ex)=>ex._id!==id)))
     .catch((err)=>console.error("Delete Err:",err));
    }
